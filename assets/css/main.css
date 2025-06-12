@@ -1,0 +1,488 @@
+
+/* Fonts */
+:root {
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway",  sans-serif;
+  --nav-font: "Raleway",  sans-serif;
+}
+
+:root { 
+  --background-color: #040000; 
+  --default-color: #f8f8f8; 
+  --heading-color: #ffffff; 
+  --accent-color: #7453C8; 
+  --surface-color: #191919; 
+  --contrast-color: #ffffff;
+}
+
+:root {
+  --nav-color: #f8f8f8; 
+  --nav-hover-color: #7453C8; 
+  --nav-mobile-background-color: #1b1a1a; 
+  --nav-dropdown-background-color: #1b1a1a; 
+  --nav-dropdown-color: #f8f8f8; 
+  --nav-dropdown-hover-color: #7453C8; 
+}
+
+.light-background {
+  --background-color: #1b1a1a;
+  --surface-color: #282828;
+}
+
+.dark-background {
+  --background-color: #000000;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #1b1b1b;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--accent-color);
+  font-family: var(--default-font);
+}
+
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  --background-color: rgba(255, 255, 255, 0);
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 20px 0;
+  transition: all 0.5s;
+  z-index: 997;
+}
+
+.scrolled .header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+  color: var(--accent-color);
+  font-size: 14px;
+  position: relative;
+  margin-top: 50px;
+}
+
+.footer .copyright {
+  padding: 20px 0;
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 45px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 5px 0;
+  scroll-margin-top: 90px;
+  overflow: clip;
+}
+
+@media (max-width: 1199px) {
+
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  padding-top: 150px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 96%) 0%, var(--background-color) 40%, color-mix(in srgb, var(--accent-color), transparent 98%) 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-color), transparent 85%) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -20%;
+  right: -10%;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+  border-radius: 50%;
+  bottom: 10%;
+  left: 5%;
+  filter: blur(50px);
+  animation: float 4s ease-in-out infinite reverse;
+  z-index: 1;
+}
+
+.hero .hero-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero .hero-title {
+  font-size: 25px;
+  font-weight: 900;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  line-height: 1.1;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .hero .hero-title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero .hero-title {
+    font-size: 20px;
+  }
+}
+
+.hero .hero-title .typed {
+  background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), #8b5cf6 50%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.hero .hero-description {
+  font-size: 1.2rem;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.hero .hero-actions .action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .hero-actions .action-btn.secondary {
+  background: transparent;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.hero .hero-actions .action-btn.secondary:hover {
+  background: var(--surface-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero .hero-actions {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .hero .hero-actions .action-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 200px 0 30px;
+  }
+
+  .hero .hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .hero .hero-actions {
+    margin-bottom: 30px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Experience, Project, & Blog Section
+--------------------------------------------------------------*/
+
+.epb .epb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.epb .epb-item {
+  position: relative;
+  background: var(--surface-color);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.epb .epb-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+  transition: left 0.5s ease;
+}
+
+
+.epb .epb-item .epb-content {
+  position: relative;
+  z-index: 2;
+}
+
+.epb .epb-item .epb-content h4 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--accent-color);
+  line-height: 1.3;
+}
+
+.epb .epb-item .epb-content p {
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.epb .epb-item .epb-content a {
+  font-size: 25px;
+}
+
+
+.epb .epb-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.epb .epb-item:hover::before {
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .epb .epb-grid {
+    grid-template-columns: 1fr;
+    margin-top: 10px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .epb .epb-item {
+    padding: 25px;
+  }
+
+  .epb .epb-item .epb-content h4 {
+    font-size: 20px;
+  }
+
+  .epb .epb-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*--------------------------------------------------------------
+# My Skill Section
+--------------------------------------------------------------*/
+.myskill .myskill-list {
+  padding: 0px 0 5px 0 ;
+}
+.myskill .myskill-list .myskill-item {
+  padding: 30px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.myskill .myskill-list .myskill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.myskill .myskill-list .myskill-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.myskill .myskill-list .myskill-item p {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+
+@media (max-width: 768px) {
+  .myskill .myskill-list .myskill-item {
+    margin-bottom: 1.5rem;
+  }
+}
